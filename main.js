@@ -20,6 +20,8 @@ const app = new Vue({
             .then(result => {
                 this.songs = result.data.response;
 
+                this.songs.sort(compare);
+
                 this.songs.forEach(song => {
                     if (!this.genres.includes(song.genre)) {
                         this.genres.push(song.genre);
@@ -29,3 +31,9 @@ const app = new Vue({
 
     }
 });
+
+function compare(a, b) {
+    if (parseInt(a.year) < parseInt(b.year)) {
+        return -1;
+    }
+}

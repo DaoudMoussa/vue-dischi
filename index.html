@@ -6,12 +6,18 @@
         <meta charset="utf-8">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-        <title>Vue - email list</title>
+        <title>Vue - song list</title>
     </head>
     <body>
         <div id="root">
+            <select v-model="currentGenre">
+                <option value="">ALL GENRES</option>
+                <option v-for="genre in genres" :value="genre">{{ genre }}</option>
+            </select>
+
             <div class="card-container">
-                <div v-for="song in songs" class="card">
+                <div v-for="song in songs" class="card"
+                    v-if="song.genre == currentGenre || currentGenre == ''">
                     <img :src="song.poster" :alt="song.title">
                     <p class="title">{{ song.title }}</p>
                     <p class="artist">{{ song.author }}</p>

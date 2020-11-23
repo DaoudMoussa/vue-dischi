@@ -17,6 +17,7 @@ body {
     max-width: 992px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {

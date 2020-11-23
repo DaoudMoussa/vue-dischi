@@ -19,21 +19,33 @@ const app = new Vue({
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then(result => {
                 this.songs = result.data.response;
-
-                this.songs.sort(compare);
+                this.songs.sort(compareYears);
 
                 this.songs.forEach(song => {
                     if (!this.genres.includes(song.genre)) {
                         this.genres.push(song.genre);
                     }
-            })
+                });
+                this.genres.sort(compareGenres)
+
         });
 
     }
 });
 
-function compare(a, b) {
+function compareGenres(a, b) {
+    console.log(a, b);
+    if (a < b) {
+        return -1;
+    }else {
+        return 1;
+    }
+}
+
+function compareYears(a, b) {
     if (parseInt(a.year) < parseInt(b.year)) {
         return -1;
+    } else {
+        return 1;
     }
 }
